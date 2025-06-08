@@ -1,0 +1,74 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/menus.xml -->
+
+<odoo>
+    <data>
+        <!-- Top-level menu for your module -->
+        <menuitem id="menu_copro_manager_root" name="Copro Manager" sequence="10"/>
+
+        <!-- Superusers (visible only to superusers) -->
+        <record id="action_superuser_list" model="ir.actions.act_window">
+            <field name="name">Contacts</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_superuser" name="Contacts" parent="menu_copro_manager_root" sequence="15"
+                  action="action_superuser_list" groups="base.group_system"/>
+
+        <record id="action_supersyndic_list" model="ir.actions.act_window">
+            <field name="name">Super Syndics</field>
+            <field name="res_model">copro.supersyndic</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_supersyndic" name="Supersyndics" parent="menu_copro_manager_root" sequence="20"
+                  action="action_supersyndic_list"/>
+
+        <record id="action_syndic_list" model="ir.actions.act_window">
+            <field name="name">Syndics</field>
+            <field name="res_model">copro.syndic</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_syndic" name="Syndics" parent="menu_copro_manager_root" sequence="25"
+                  action="action_syndic_list"/>
+
+        <record id="action_coproprietaire_list" model="ir.actions.act_window">
+            <field name="name">Copropriétaires</field>
+            <field name="res_model">copro.coproprietaire</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_coproprietaire" name="Copropriétaires" parent="menu_copro_manager_root" sequence="30"
+                  action="action_coproprietaire_list"/>
+
+        <record id="action_prestataire_list" model="ir.actions.act_window">
+            <field name="name">Prestataires</field>
+            <field name="res_model">copro.prestataire</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_prestataire" name="Prestataires" parent="menu_copro_manager_root" sequence="35"
+                  action="action_prestataire_list"/>
+
+        <!-- Licenses menu (superusers only) -->
+        <record id="action_license_list" model="ir.actions.act_window">
+            <field name="name">Licenses</field>
+            <field name="res_model">copro.license</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_license" name="Licenses" parent="menu_copro_manager_root" sequence="40"
+                  action="action_license_list" groups="base.group_system"/>
+
+        <record id="action_residences_list" model="ir.actions.act_window">
+            <field name="name">Residences</field>
+            <field name="res_model">copro.residence</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_residence" name="Residences" parent="menu_copro_manager_root" sequence="45"
+                  action="action_residences_list"/>
+
+        <record id="action_apartment_list" model="ir.actions.act_window">
+            <field name="name">Apartments</field>
+            <field name="res_model">copro.apartment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem id="menu_apartment" name="Apartments" parent="menu_copro_manager_root" sequence="50"
+                  action="action_apartment_list"/>
+    </data>
+</odoo>

@@ -1,0 +1,37 @@
+# /home/siisi/property-management/.gitignore
+
+# Ignore compiled Python files and caches
+__pycache__/
+*.pyc
+
+# Ignore all .log files recursively
+**/*.log
+*.log
+*.pid
+**/data/
+**/logs/
+
+# Ignore virtual environments and secrets
+venv/
+env/
+secrets/
+
+# IDE / editor files
+.vscode/
+*.suo
+*.user
+*.swp
+
+# Ignore prod files
+prod/config/
+prod/logs/
+prod/odoo_pg_pass
+
+# Ignore dev files
+dev/config/
+dev/logs/
+dev/odoo_pg_pass
+
+# OS files
+.DS_Store
+Thumbs.db

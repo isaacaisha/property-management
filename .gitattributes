@@ -1,0 +1,8 @@
+# /home/siisi/property-management/.gitattributes
+
+config/* binary
+addons/* binary
+manager_prod-db-data/* binary
+odoo-db-data-local/* binary
+manager_prod-data/* binary
+manager-web-data-local/* binary

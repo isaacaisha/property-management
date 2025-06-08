@@ -1,0 +1,42 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_superuser_module,Superuser Access to Apps,base.model_ir_module_module,base.group_system,1,1,1,1
+access_superuser_users,Superuser Access to Users,base.model_res_users,base.group_system,1,1,1,1
+access_superuser_supersyndic,Superuser Access to Supersyndic,copro_manager.model_copro_supersyndic,base.group_system,1,1,1,1
+access_superuser_syndic,Superuser Access to Syndic,copro_manager.model_copro_syndic,base.group_system,1,1,1,1
+access_copro_users,access.copro.users,base.model_res_users,copro_manager.group_coproprietaire,1,0,0,0
+access_presta_users,access.presta.users,base.model_res_users,copro_manager.group_prestataire,1,0,0,0
+
+access_supersyndic_superuser,access.supersyndic.superuser,copro_manager.model_copro_supersyndic,copro_manager.group_supersyndic,1,0,0,0
+access_supersyndic_user,access.supersyndic,copro_manager.model_copro_supersyndic,copro_manager.group_supersyndic,1,0,0,0
+access_copro_supersyndic,access.copro.supersyndic,copro_manager.model_copro_supersyndic,copro_manager.group_coproprietaire,1,0,0,0
+access_presta_supersyndic,access.presta.supersyndic,copro_manager.model_copro_supersyndic,copro_manager.group_prestataire,1,0,0,0
+access_supersyndic_syndic,access.supersyndic.syndic,copro_manager.model_copro_syndic,copro_manager.group_supersyndic,1,1,1,1
+access_supersyndic_copro,access.supersyndic.copro,copro_manager.model_copro_coproprietaire,copro_manager.group_supersyndic,1,1,1,1
+access_supersyndic_presta,access.supersyndic.presta,copro_manager.model_copro_prestataire,copro_manager.group_supersyndic,1,1,1,1
+
+access_syndic_superuser,access.syndic.superuser,copro_manager.model_copro_syndic,copro_manager.group_syndic,1,0,0,0
+access_syndic_user,access.syndic,copro_manager.model_copro_syndic,copro_manager.group_syndic,1,0,0,0
+access_copro_syndic,access.copro.syndic,copro_manager.model_copro_syndic,copro_manager.group_coproprietaire,1,0,0,0
+access_presta_syndic,access.presta.syndic,copro_manager.model_copro_syndic,copro_manager.group_prestataire,1,0,0,0
+access_syndic_copro,access.syndic.copro,copro_manager.model_copro_coproprietaire,copro_manager.group_syndic,1,1,1,1
+access_syndic_presta,access.syndic.presta,copro_manager.model_copro_prestataire,copro_manager.group_syndic,1,1,1,1
+
+access_coproprietaire_superuser,access.coproprietaire.superuser,copro_manager.model_copro_coproprietaire,copro_manager.group_coproprietaire,1,0,0,0
+access_presta_copro,access.presta.copro,copro_manager.model_copro_coproprietaire,copro_manager.group_prestataire,1,0,0,0
+
+access_prestataire_superuser,access.prestataire.superuser,copro_manager.model_copro_prestataire,copro_manager.group_prestataire,1,0,0,0
+access_copro_presta,access.copro.presta,copro_manager.model_copro_prestataire,copro_manager.group_coproprietaire,1,0,0,0
+
+access_residence_superuser,access.residence.superuser,copro_manager.model_copro_residence,base.group_system,1,1,1,1
+access_copro_residence_superuser,access.residence,copro_manager.model_copro_residence,base.group_system,1,1,1,1
+access_copro_residence_syndic,access.residence,copro_manager.model_copro_residence,copro_manager.group_syndic,1,1,1,1
+access_copro_residence,access.copro.residence,copro_manager.model_copro_residence,copro_manager.group_coproprietaire,1,0,0,0
+access_presta_residence,access.presta.residence,copro_manager.model_copro_residence,copro_manager.group_prestataire,1,0,0,0
+
+access_apartment_superuser,Superuser Access to Apartment,copro_manager.model_copro_apartment,base.group_system,1,1,1,1
+access_apartment_supersyndic,Supersyndic Access to Apartment,copro_manager.model_copro_apartment,copro_manager.group_supersyndic,1,1,1,1
+access_apartment_syndic,Syndic Access to Apartment,copro_manager.model_copro_apartment,copro_manager.group_syndic,1,1,1,1
+access_apartment_copro,Co-owner Access to Apartment,copro_manager.model_copro_apartment,copro_manager.group_coproprietaire,1,0,0,0
+access_apartment_presta,Service Provider Access to Apartment,copro_manager.model_copro_apartment,copro_manager.group_prestataire,1,0,0,0
+
+access_license_user,access.license,copro_manager.model_copro_license,base.group_system,1,1,1,1

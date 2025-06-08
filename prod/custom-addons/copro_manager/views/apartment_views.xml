@@ -1,0 +1,44 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/apartment_views.xml -->
+
+<odoo>
+    <!-- List View for Apartments -->
+    <record id="view_apartment_list" model="ir.ui.view">
+        <field name="name">copro.apartment.list</field>
+        <field name="model">copro.apartment</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Apartments">
+                <field name="name"/>
+                <field name="number"/>
+                <field name="floor"/>
+                <field name="residence_ids" widget="many2many_tags"/>
+                <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                <field name="supersyndic_ids" widget="many2many_tags"/>
+                <field name="syndic_ids" widget="many2many_tags"/>
+                <field name="created_by" widget="many2one_avatar"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Apartments -->
+    <record id="view_apartment_form" model="ir.ui.view">
+        <field name="name">copro.apartment.form</field>
+        <field name="model">copro.apartment</field>
+        <field name="arch" type="xml">
+            <form string="Apartment">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="floor"/>
+                        <field name="residence_ids" widget="many2many_tags"/>
+                        <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                        <field name="supersyndic_ids" widget="many2many_tags"/>
+                        <field name="syndic_ids" widget="many2many_tags"/>
+                        <field name="created_by" widget="many2one_avatar"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

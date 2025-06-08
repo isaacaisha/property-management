@@ -1,0 +1,41 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/coproprietaire_views.xml -->
+
+<odoo>
+    <!-- List view for Copropriétaires -->
+    <record id="view_coproprietaire_list" model="ir.ui.view">
+        <field name="name">coproprietaire.list</field>
+        <field name="model">copro.coproprietaire</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Copropriétaires">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="supersyndic_id"/>
+                <field name="syndic_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for Copropriétaires -->
+    <record id="view_coproprietaire_form" model="ir.ui.view">
+        <field name="name">coproprietaire.form</field>
+        <field name="model">copro.coproprietaire</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Copropriétaire">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="supersyndic_id"/>
+                        <field name="syndic_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

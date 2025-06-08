@@ -1,0 +1,29 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/security/groups.xml -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Group for Supersyndics -->
+        <record id="group_supersyndic" model="res.groups">
+            <field name="name">Supersyndic</field>
+            <field name="category_id" ref="base.module_category_extra"/>
+        </record>
+
+        <!-- Group for Syndics -->
+        <record id="group_syndic" model="res.groups">
+            <field name="name">Syndic</field>
+            <field name="category_id" ref="base.module_category_user_type"/>
+        </record>
+
+        <!-- Group for Copropriétaires -->
+        <record id="group_coproprietaire" model="res.groups">
+            <field name="name">Copropriétaire</field>
+            <field name="category_id" ref="base.module_category_user_type"/>
+        </record>
+
+        <!-- Group for Prestataires -->
+        <record id="group_prestataire" model="res.groups">
+            <field name="name">Prestataire</field>
+            <field name="category_id" ref="base.module_category_user_type"/>
+        </record>
+    </data>
+</odoo>

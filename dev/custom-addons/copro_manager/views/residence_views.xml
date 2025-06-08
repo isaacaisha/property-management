@@ -1,0 +1,120 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/residence_views.xml -->
+
+<odoo>
+    <data>
+        <!-- Search View -->
+        <record id="view_residence_search" model="ir.ui.view">
+            <field name="name">copro.residence.search</field>
+            <field name="model">copro.residence</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Quick search fields -->
+                    <field name="name"/>
+                    <!--<button name="archive_action" type="object" icon="fa-archive" string="Archive"/>-->
+
+                    <!--<field name="superuser_ids"/>-->
+                    <field name="supersyndic_ids"/>
+                    <field name="syndic_ids"/>
+                    
+                    <!-- Predefined filters -->
+                    <filter string="Recent" 
+                            name="recent" 
+                            domain="[('created_at', '&gt;', context_today().strftime('%%Y-01-01'))]"/>
+                    
+                    <filter string="Created by me" 
+                            name="my_residences" 
+                            domain="[('created_by', '=', uid)]"/>
+
+                    <filter string="Active" 
+                            name="active" 
+                            domain="[('active', '=', True)]"/>
+                            
+                    <filter string="Archived" 
+                            name="archived" 
+                            domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- List View for Residences -->
+        <record id="view_residence_list" model="ir.ui.view">
+            <field name="name">residence.list</field>
+            <field name="model">copro.residence</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <!--<list string="Residences" decoration-active="active">-->
+                <list string="Residences">
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="number_of_apartments"/>
+                    <field name="total_area"/>
+                    <field name="construction_date"/>
+                    <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                    <field name="supersyndic_ids" widget="many2many_tags"/>
+                    <field name="syndic_ids" widget="many2many_tags"/>
+                    <field name="created_by" widget="many2one_avatar"/>
+                    <field name="active" invisible="1"/>
+                    <button name="toggle_active" 
+                            type="object" 
+                            icon="fa-archive" 
+                            class="oe_stat_button"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View for Residences -->
+        <record id="view_residence_form" model="ir.ui.view">
+            <field name="name">copro.residence.form</field>
+            <field name="model">copro.residence</field>
+            <field name="arch" type="xml">
+                <form string="Residence">
+                    <header>
+                        <field name="created_by" widget="many2one_avatar"/>
+                        <field name="created_at"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="address"/>
+                        </group>
+                        <group>
+                            <field name="number_of_apartments"/>
+                            <field name="total_area"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Management">
+                                <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                                <field name="supersyndic_ids" widget="many2many_tags"/>
+                                <field name="syndic_ids" widget="many2many_tags"/>
+                            </page>
+                            
+                            <page string="Address Details">
+                                <field name="address" widget="textarea"/>
+                            </page>
+
+                            <page string="Residence Details">
+                                <group>
+                                    <field name="construction_date"/>
+                                    <field name="number_of_floors"/>
+                                    <field name="common_areas" widget="textarea"/>
+                                    <field name="last_inspection_date"/>
+                                    <field name="heating_type"/>
+                                </group>
+                            </page>
+
+                            <page string="Extra Data">
+                                <field name="extra_data" widget="json"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter for logging messages and activities -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/supersyndic_views.xml -->
+
+<odoo>
+    <!-- List view for Supersyndics -->
+    <record id="view_supersyndic_list" model="ir.ui.view">
+        <field name="name">supersyndic.list</field>
+        <field name="model">copro.supersyndic</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Super Syndics">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="license_id"/>
+                <field name="license_type"/>
+                <field name="license_start"/>
+                <field name="license_end"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for Supersyndics -->
+    <record id="view_supersyndic_form" model="ir.ui.view">
+        <field name="name">supersyndic.form</field>
+        <field name="model">copro.supersyndic</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Super Syndics">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="license_id"/>
+                        <field name="license_type" groups="base.group_system"/>
+                        <field name="license_start" groups="base.group_system"/>
+                        <field name="license_end" groups="base.group_system"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

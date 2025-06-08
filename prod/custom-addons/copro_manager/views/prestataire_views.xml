@@ -1,0 +1,42 @@
+<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/prestataire_views.xml -->
+
+<odoo>
+    <!-- List view for Prestataires -->
+    <record id="view_prestataire_list" model="ir.ui.view">
+        <field name="name">prestataire.list</field>
+        <field name="model">copro.prestataire</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Prestataires">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="service_type"/>
+                <field name="supersyndic_id"/>
+                <field name="syndic_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for Prestataires -->
+    <record id="view_prestataire_form" model="ir.ui.view">
+        <field name="name">prestataire.form</field>
+        <field name="model">copro.prestataire</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Prestataire">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="service_type"/>
+                        <field name="supersyndic_id"/>
+                        <field name="syndic_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

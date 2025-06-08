@@ -1,0 +1,63 @@
+# /home/siisi/property-management/dev/docker-compose.yml
+
+services:
+  odoo_db_local:
+    image: postgres:latest
+    container_name: odoo-db-local
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql_password
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data-local:/var/lib/postgresql/data/pgdata
+    networks:
+      - odoo-network-local
+    secrets:
+      - postgresql_password
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo -d postgres"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+  manager_local:
+    build: .
+    image: dockerfile-custom
+    container_name: manager-web-local
+    environment:
+      - VIRTUAL_PORT=8069
+      - HOST=odoo-db-local
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql_password
+      - DB_NAME=manager_local
+      - ADDONS_PATH=/mnt/custom-addons,/usr/lib/python3/site-packages/odoo/addons
+    ports:
+      - "8013:8069"
+    volumes:
+      - manager-web-data-local:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./custom-addons:/mnt/custom-addons
+      #- ./logs:/var/log/siisi/dev/logs
+      - ./logs:/var/log/odoo
+    networks:
+      - odoo-network-local
+    secrets:
+      - postgresql_password
+    restart: always
+    depends_on:
+      odoo_db_local:
+        condition: service_healthy
+
+volumes:
+  odoo-db-data-local:
+  manager-web-data-local:
+
+secrets:
+  postgresql_password:
+    file: odoo_pg_pass
+
+networks:
+  odoo-network-local:
+    driver: bridge
