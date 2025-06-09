@@ -21,8 +21,8 @@
 #############################################################################
 {
     'name': 'Odoo 18 Full Accounting Kit for Community',
-    'version': '1.0',
-    #'version': '18.0.2.0.3',
+    #'version': '18.0.2.0.4',
+    "version": "1.0",
     'category': 'Accounting',
     'live_test_url': 'https://kit.easyinstance.com/web/login?redirect=/odoo/accounting',
     'summary': """Odoo 18 Accounting, Odoo 18 Accounting Reports, Odoo18 Accounting, Odoo Accounting, Odoo18 Financial Reports, Odoo18 Asset, Odoo18 Profit and Loss, PDC, Followups, Odoo18, Accounting, Odoo Apps, Reports""",
@@ -98,7 +98,7 @@
         'wizard/import_bank_statement_views.xml',
     ],
     'external_dependencies': {
-            'python': ['openpyxl', 'ofxparse']
+            'python': ['openpyxl', 'ofxparse', 'qifparse']
         },
     'assets': {
         'web.assets_backend': [

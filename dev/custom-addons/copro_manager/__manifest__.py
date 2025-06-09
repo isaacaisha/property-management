@@ -1,7 +1,7 @@
 # /home/siisi/property-management/dev/custom-addons/copro_manager/__manifest__.py
 
 {
-    'name': 'Copro Manage',
+    'name': 'Property Manager',
     'version': '1.0',
     'category': 'Property Management',
     'summary': 'Gestion des copropriétés avec rôles et permissions',
@@ -41,7 +41,6 @@
             # Add CSS/JS files here if you have them
         ],
     },
-    'images': ['static/description/shark.png','static/description/syndicate.jpg'],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

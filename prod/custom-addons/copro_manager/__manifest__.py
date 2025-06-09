@@ -41,7 +41,6 @@
             # Add CSS/JS files here if you have them
         ],
     },
-    'images': ['static/description/shark.png','static/description/syndicate.jpg'],
     'installable': True,
     'application': True,
     'license': 'LGPL-3',

@@ -16,7 +16,7 @@ docker-compose restart manager_local
 docker-compose logs -f manager_local
 
 # Alternatively, view logs for a container by its Docker name
-docker logs gestion-web-local
+docker logs manager-web-local
 
 # If databases already exist but have ownership issues, drop and recreate them
 docker exec -it odoo-db-local psql -U odoo -d postgres -c "DROP DATABASE manager_local;"
@@ -33,11 +33,9 @@ docker-compose exec manager_local odoo -d manager_local -u copro_manager --stop-
 # To update every installed module in your database
 docker-compose exec manager_local odoo -d manager_local -i base --stop-after-init
 docker-compose exec manager_local odoo -d manager_local -u all --stop-after-init
-docker-compose exec odoo16_local odoo -d odoo16_local -i base --stop-after-init
-docker-compose exec odoo16_local odoo -d odoo16_local -u all --stop-after-init
 
 # Remove a specific Docker volume (if not in use)
-docker volume rm gestion-web-data-local
+docker volume rm manager-web-data-local
 
 # List Docker networks
 docker network ls

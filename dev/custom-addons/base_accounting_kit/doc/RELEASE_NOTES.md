@@ -19,3 +19,8 @@
 #### Version 18.0.2.0.2
 #### UPDT
 - Added the Import Bank Statement feature.
+
+#### 21.04.2025
+#### Version 18.0.2.0.4
+#### FIX
+- Fixed qifparse external dependency (python) issue.
