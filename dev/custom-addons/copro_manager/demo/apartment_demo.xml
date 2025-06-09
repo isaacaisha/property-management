@@ -1,0 +1,77 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/apartment_demo.xml -->
+
+<odoo>
+  <data noupdate="1">
+    <!-- Apartment 1: Created by syndic_1 -->
+    <record id="apartment_1" model="copro.apartment">
+      <field name="name">Apartment A1</field>
+      <field name="number">A1-a</field>
+      <field name="floor">1</field>
+      <field name="tantieme">550.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_1'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_1'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_1'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_1'))]"/>-->
+    </record>
+
+    <!-- Apartment 2: Created by syndic_2 -->
+    <record id="apartment_2" model="copro.apartment">
+      <field name="name">Apartment A2</field>
+      <field name="number">A2-b</field>
+      <field name="floor">2</field>
+      <field name="tantieme">350.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_2'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_2'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_2'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_2'))]"/>-->
+    </record>
+
+    <!-- Apartment 3: Created by syndic_3 -->
+    <record id="apartment_3" model="copro.apartment">
+      <field name="name">Apartment B1</field>
+      <field name="number">B1-c</field>
+      <field name="floor">1</field>
+      <field name="tantieme">750.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_3'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_3'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_3'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_3'))]"/>-->
+    </record>
+
+    <!-- Apartment 4: Created by syndic_1 -->
+    <record id="apartment_4" model="copro.apartment">
+      <field name="name">Apartment A4</field>
+      <field name="number">A4-b</field>
+      <field name="floor">4</field>
+      <field name="tantieme">450.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_1'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_1'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_1'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_4'))]"/>-->
+    </record>
+
+    <!-- Apartment 5: Created by syndic_2 -->
+    <record id="apartment_5" model="copro.apartment">
+      <field name="name">Apartment A5</field>
+      <field name="number">A2-a</field>
+      <field name="floor">5</field>
+      <field name="tantieme">650.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_2'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_2'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_2'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_5'))]"/>-->
+    </record>
+
+    <!-- Apartment 6: Created by syndic_3 -->
+    <record id="apartment_6" model="copro.apartment">
+      <field name="name">Apartment B6</field>
+      <field name="number">B6-b</field>
+      <field name="floor">6</field>
+      <field name="tantieme">250.0</field>
+      <field name="residence_ids" eval="[(4, ref('copro_manager.residence_3'))]"/>
+      <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_3'))]"/>
+      <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_3'))]"/>
+      <!--<field name="coproprietaire_ids" eval="[(4, ref('copro_manager.copro_6'))]"/>-->
+    </record>
+  </data>
+</odoo>

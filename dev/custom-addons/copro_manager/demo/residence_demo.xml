@@ -1,0 +1,50 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/residence_demo.xml -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Residence 1: Associated with syndic_1 -->
+        <record id="residence_1" model="copro.residence">
+            <field name="name">Residence 1</field>
+            <field name="address">123 Main St, City</field>
+            <field name="number_of_apartments">20</field>
+            <field name="total_area">500.0</field>
+            <field name="construction_date">2020-01-01</field>
+            <field name="number_of_floors">5</field>
+            <field name="common_areas">Lobby, Parking</field>
+            <field name="heating_type">Central</field>
+            <field name="last_inspection_date">2023-06-01</field>
+            <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_1'))]"/>
+            <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_1'))]"/>
+        </record>
+
+        <!-- Residence 2: Associated with syndic_2 -->
+        <record id="residence_2" model="copro.residence">
+            <field name="name">Residence 2</field>
+            <field name="address">456 Oak St, City</field>
+            <field name="number_of_apartments">30</field>
+            <field name="total_area">800.0</field>
+            <field name="construction_date">2015-05-10</field>
+            <field name="number_of_floors">6</field>
+            <field name="common_areas">Gym, Pool</field>
+            <field name="heating_type">Electric</field>
+            <field name="last_inspection_date">2022-08-15</field>
+            <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_2'))]"/>
+            <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_2'))]"/>
+        </record>
+
+        <!-- Residence 3: Associated with syndic_3 -->
+        <record id="residence_3" model="copro.residence">
+            <field name="name">Residence 3</field>
+            <field name="address">789 Pine St, City</field>
+            <field name="number_of_apartments">15</field>
+            <field name="total_area">400.0</field>
+            <field name="construction_date">2010-07-20</field>
+            <field name="number_of_floors">4</field>
+            <field name="common_areas">Garden, Terrace</field>
+            <field name="heating_type">Gas</field>
+            <field name="last_inspection_date">2023-03-10</field>
+            <field name="supersyndic_ids" eval="[(4, ref('copro_manager.supersyndic_3'))]"/>
+            <field name="syndic_ids" eval="[(4, ref('copro_manager.syndic_3'))]"/>
+        </record>
+    </data>
+</odoo>

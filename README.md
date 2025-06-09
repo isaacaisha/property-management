@@ -2,7 +2,7 @@
 
 A **containerized Odoo®** setup leveraging Docker and Docker Compose for rapid development, configuration management, and production-ready deployment. Includes PostgreSQL database, custom addons, secure secrets handling, and Odoo configuration templating.
 
-![Platform Demo](static/assets/images/sydicate.jpg)
+![Platform Demo](/web/static/copro_manager/description/syndicate.jpg)
 
 ---
 

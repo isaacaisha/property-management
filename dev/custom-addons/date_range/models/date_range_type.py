@@ -5,13 +5,14 @@ import logging
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
 class DateRangeType(models.Model):
     _name = "date.range.type"
     _description = "Date Range Type"
+    _order = "name,id"
 
     @api.model
     def _default_company(self):
@@ -83,11 +84,12 @@ class DateRangeType(models.Model):
                     continue
                 if bool(
                     rec.date_range_ids.filtered(
-                        lambda r: r.company_id and r.company_id != rec.company_id
+                        lambda r, drt=rec: r.company_id
+                        and r.company_id != drt.company_id
                     )
                 ):
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "You cannot change the company, as this "
                             "Date Range Type is assigned to Date Range '%s'."
                         )
@@ -143,6 +145,6 @@ class DateRangeType(models.Model):
                     wizard.action_apply(batch=True)
             except Exception as e:
                 logger.warning(
-                    "Error autogenerating ranges for date range type "
-                    "%s: %s" % (dr_type.name, e)
+                    f"Error autogenerating ranges for date range type "
+                    f"{dr_type.name}: {e}"
                 )

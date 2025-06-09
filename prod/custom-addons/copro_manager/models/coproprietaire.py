@@ -1,4 +1,4 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/models/coproprietaire.py
+# /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/coproprietaire.py
 
 from odoo import models, fields, api
 
@@ -9,14 +9,27 @@ class Coproprietaire(models.Model):
     _description = 'Copropriétaire'
 
     name = fields.Char(string="Nom", required=True)
-    email = fields.Char(string="Email")
-    phone = fields.Char(string="Téléphone")
-    address = fields.Text(string="Adresse")
+    email = fields.Char(string="Email", required=True)
+    phone = fields.Char(string="Téléphone", required=True)
+    # Related field: pull address from the residency record
+    address = fields.Text(
+        string="Adresse",
+        related='residence_id.address',
+        store=True,
+        readonly=False,
+    )
 
-    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Associé")
+    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Associé", required=True)
     syndic_id = fields.Many2one('copro.syndic', string="Syndic Associé", required=True)
-    residence_id = fields.Many2one('copro.residence', string="Residence")
-    apartment_id = fields.Many2one('copro.apartment', string="Apartment")
+    residence_id = fields.Many2one('copro.residence', string="Residence", required=True)
+    # Expose all apartments of the selected residence for display
+    apartment_ids = fields.One2many(
+        'copro.apartment',
+        related='residence_id.apartment_ids',
+        string="Apartments in Residence",
+        readonly=True,
+    )
+    apartment_id = fields.Many2one('copro.apartment', string="Apartment", required=True)
     user_id = fields.Many2one('res.users', string="Utilisateur", readonly=True, ondelete='cascade')
 
     @api.model

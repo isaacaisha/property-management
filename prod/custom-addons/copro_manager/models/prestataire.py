@@ -1,4 +1,4 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/models/prestataire.py
+# /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/prestataire.py
 
 from odoo import models, fields, api
 
@@ -10,8 +10,8 @@ class Prestataire(models.Model):
 
     name = fields.Char(string="Nom", required=True)
     email = fields.Char(string="Email", required=True)
-    phone = fields.Char(string="Téléphone")
-    address = fields.Text(string="Adresse")
+    phone = fields.Char(string="Téléphone", required=True)
+    address = fields.Text(string="Adresse", required=True)
     service_type = fields.Selection([
         ('plumber', 'Plomberie'),
         ('electrician', 'Électricité'),
@@ -20,9 +20,10 @@ class Prestataire(models.Model):
         ('other', 'Autre'),
     ], string="Type de Service", required=True)
 
-    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Responsable")
+    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Responsable", required=True)
     syndic_id = fields.Many2one("copro.syndic", string="Syndic Responsable", required=True)
-    residence_ids = fields.Many2many('copro.residence', string="Associated Residences")
+    residence_id = fields.Many2one('copro.residence', string="Residence")
+    apartment_id = fields.Many2one('copro.apartment', string="Apartment")
     user_id = fields.Many2one('res.users', string="Utilisateur", readonly=True, ondelete='cascade')
 
     @api.model

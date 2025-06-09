@@ -1,4 +1,4 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/security/ir_rules.xml -->
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/security/ir_rules.xml -->
 
 <odoo>
   <data noupdate="1">
@@ -11,6 +11,30 @@
       <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
     </record>
 
+    <!-- Rule: Supersyndic sees Syndics linked to them -->
+    <record id="rule_syndic_supersyndic" model="ir.rule">
+      <field name="name">Supersyndic: Managed Syndics</field>
+      <field name="model_id" ref="model_copro_syndic"/>
+      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    </record>
+
+    <!-- Rule: Supersyndic sees Copropriétaire under their Syndics -->
+    <record id="rule_coproprietaire_supersyndic" model="ir.rule">
+      <field name="name">Supersyndic: Managed Copropriétaire</field>
+      <field name="model_id" ref="model_copro_coproprietaire"/>
+      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    </record>
+    
+    <!-- Rule: Supersyndic sees Prestataires under their Syndics -->
+    <record id="rule_prestataire_supersyndic" model="ir.rule">
+      <field name="name">Supersyndic: Managed Prestataires</field>
+      <field name="model_id" ref="model_copro_prestataire"/>
+      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    </record>
+
     <!-- ======================= Syndic ======================= -->
     <!-- Rule: Syndic sees their own records -->
     <record id="rule_syndic_own_records" model="ir.rule">
@@ -20,47 +44,154 @@
       <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
     </record>
 
-    <!-- Rule: Supersyndic sees Syndics linked to them -->
-    <record id="rule_syndic_supersyndic" model="ir.rule">
-      <field name="name">Supersyndic: Managed Syndics</field>
-      <field name="model_id" ref="model_copro_syndic"/>
-      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
-      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    <!-- Syndic sees only their associated Supersyndic -->
+    <record id="rule_supersyndic_for_syndic" model="ir.rule">
+      <field name="name">Syndic: Own Supersyndic Only</field>
+      <field name="model_id" ref="model_copro_supersyndic"/>
+      <field name="domain_force">[('syndic_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
+    </record>
+    
+    <!-- Rule: Syndic sees Copropriétaire under their Syndics -->
+    <record id="rule_coproprietaire_syndic" model="ir.rule">
+      <field name="name">Syndic: Managed Copropriétaire</field>
+      <field name="model_id" ref="model_copro_coproprietaire"/>
+      <field name="domain_force">[('syndic_id.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
+    </record>
+    
+    <!-- Rule: Syndic sees Prestataires under their Syndics -->
+    <record id="rule_prestataire_syndic" model="ir.rule">
+      <field name="name">Syndic: Managed Prestataires</field>
+      <field name="model_id" ref="model_copro_prestataire"/>
+      <field name="domain_force">[('syndic_id.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
     </record>
 
     <!-- ======================= Copropriétaire ======================= -->
     <!-- Combined Rule: Copropriétaire sees only their own records and those associated via syndic or supersyndic -->
-    <record id="rule_coproprietaire_own_records" model="ir.rule">
-      <field name="name">Syndic: Own Records</field>
+    <record id="rule_coproprietaire_restricted" model="ir.rule">
+      <field name="name">Copropriétaire: Own and Associated Records</field>
       <field name="model_id" ref="model_copro_coproprietaire"/>
       <field name="domain_force">[('user_id', '=', user.id)]</field>
-      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
-      <field name="domain_force">[('syndic_id.user_id', '=', user.id)]</field>
       <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
     </record>
-  
+    
+    <!-- Copropriétaire: see only my Supersyndics -->
+    <record id="rule_supers_for_copro" model="ir.rule">
+      <field name="name">Copro: My Supersyndics</field>
+      <field name="model_id" ref="model_copro_supersyndic"/>
+      <field name="domain_force">[('id','in', user.my_copro_supers.ids)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
+
+    <!-- Copropriétaire: see only my Syndics -->
+    <record id="rule_syn_for_copro" model="ir.rule">
+      <field name="name">Copro: My Syndics</field>
+      <field name="model_id" ref="model_copro_syndic"/>
+      <field name="domain_force">[('id','in', user.my_copro_syndics.ids)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
+
+    <!-- Copropriétaire: see only my Prestataires (via my supers or my syndics) -->
+    <record id="rule_prestataire_for_copro" model="ir.rule">
+      <field name="name">Copropriétaire: Associated Prestataires</field>
+      <field name="model_id" ref="model_copro_prestataire"/>
+      <!-- domain: union of both sets -->
+      <field name="domain_force">
+        <![CDATA[
+          ['|',
+            ('supersyndic_id','in', user.my_copro_supers.ids),
+            ('syndic_id','in',      user.my_copro_syndics.ids)
+          ]
+        ]]>
+      </field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
+
+    <!-- Copropriétaire: see only my Residences -->
+    <record id="rule_residence_for_copro" model="ir.rule">
+      <field name="name">Copropriétaire: Associated Residences</field>
+      <field name="model_id" ref="model_copro_residence"/>
+      <field name="domain_force">
+        <![CDATA[
+          ['|',
+            ('supersyndic_ids','in', user.my_copro_supers.ids),
+            ('syndic_ids','in',      user.my_copro_syndics.ids)
+          ]
+        ]]>
+      </field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
+
     <!-- ======================= Prestataire ======================= -->
-    <!-- Combined Rule: Prestataire sees only their own records and those associated via syndic or supersyndic -->
+    <!-- Combined Rule: Prestataire sees only their own records -->
     <record id="rule_prestataire_restricted" model="ir.rule">
       <field name="name">Prestataire: Own and Associated Records</field>
       <field name="model_id" ref="model_copro_prestataire"/>
+      <field name="domain_force">[('user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
+    </record>
+
+    <!-- Prestataire: see only my Supersyndics -->
+    <record id="rule_supers_for_presta" model="ir.rule">
+      <field name="name">Presta: My Supersyndics</field>
+      <field name="model_id" ref="model_copro_supersyndic"/>
+      <field name="domain_force">[('id','in', user.my_presta_supers.ids)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
+    </record>
+
+    <!-- Prestataire: see only my Syndics -->
+    <record id="rule_syn_for_presta" model="ir.rule">
+      <field name="name">Presta: My Syndics</field>
+      <field name="model_id" ref="model_copro_syndic"/>
+      <field name="domain_force">[('id','in', user.my_presta_syndics.ids)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
+    </record>
+
+    <!-- Prestataire: see only my Copropriétaires -->
+    <record id="rule_copro_for_presta" model="ir.rule">
+      <field name="name">Prestataire: Associated Copropriétaires</field>
+      <field name="model_id" ref="model_copro_coproprietaire"/>
       <field name="domain_force">
-        ['|',
-          ('user_id', '=', user.id),
-          '|',
-            ('syndic_id.user_id', '=', user.id),
-            ('supersyndic_id.user_id', '=', user.id)
-        ]
+        <![CDATA[
+          ['|',
+            ('supersyndic_id','in', user.my_presta_supers.ids),
+            ('syndic_id','in',      user.my_presta_syndics.ids)
+          ]
+        ]]>
       </field>
       <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
     </record>
-    
-    <!-- Rule: Supersyndic sees Prestataires under their Syndics -->
-    <record id="rule_prestataire_supersyndic" model="ir.rule">
-      <field name="name">Supersyndic: Managed Prestataires</field>
-      <field name="model_id" ref="model_copro_prestataire"/>
-      <field name="domain_force">[('supersyndic_id.user_id', '=', user.id)]</field>
-      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+
+    <!-- Prestataire: see only my Residences -->
+    <record id="rule_residence_for_presta" model="ir.rule">
+      <field name="name">Prestataire: Associated Residences</field>
+      <field name="model_id" ref="model_copro_residence"/>
+      <field name="domain_force">
+        <![CDATA[
+          ['|',
+            ('supersyndic_ids','in', user.my_presta_supers.ids),
+            ('syndic_ids','in',      user.my_presta_syndics.ids)
+          ]
+        ]]>
+      </field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
+    </record>
+
+    <!-- Prestataire: see only my Apartments -->
+    <record id="rule_apartment_for_presta" model="ir.rule">
+      <field name="name">Prestataire: Associated Apartments</field>
+      <field name="model_id" ref="model_copro_apartment"/>
+      <field name="domain_force">
+        <![CDATA[
+          ['|',
+            ('supersyndic_ids','in', user.my_presta_supers.ids),
+            ('syndic_ids','in',      user.my_presta_syndics.ids)
+          ]
+        ]]>
+      </field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
     </record>
 
     <!-- ======================= Residence ======================= -->
@@ -80,20 +211,60 @@
       <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
     </record>
 
-    <!-- Rule: Coproprietaire sees their Residence -->
-    <!--<record id="rule_residence_coproprietaire" model="ir.rule">
-      <field name="name">Coproprietaire: Residence</field>
-      <field name="model_id" ref="model_copro_residence"/>
-      <field name="domain_force">[('id', '=', user.coproprietaire_id.residence_id.id)]</field>
-      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
-    </record>-->
+    <!-- ======================= Apartment ======================= -->
+    <!-- Rule: Supersyndic sees Apartments they manage -->
+    <record id="rule_apartment_supersyndic" model="ir.rule">
+      <field name="name">Supersyndic: Managed Apartments</field>
+      <field name="model_id" ref="model_copro_apartment"/>
+      <field name="domain_force">[('supersyndic_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    </record>
 
-    <!-- Rule: Prestataire sees associated Residences -->
-    <!--<record id="rule_residence_prestataire" model="ir.rule">
-      <field name="name">Prestataire: Associated Residences</field>
-      <field name="model_id" ref="model_copro_residence"/>
-      <field name="domain_force">[('id', 'in', user.prestataire_id.residence_ids.ids)]</field>
-      <field name="groups" eval="[(4, ref('copro_manager.group_prestataire'))]"/>
-    </record>-->
+    <!-- Rule: Syndic sees Apartmens they manage -->
+    <record id="rule_apartment_syndic" model="ir.rule">
+      <field name="name">Syndic: Managed Apartments</field>
+      <field name="model_id" ref="model_copro_apartment"/>
+      <field name="domain_force">[('syndic_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
+    </record>
+
+    <!-- Copropriétaire sees only their associated Apartments -->
+    <record id="rule_apartment_coproprietaire_only" model="ir.rule">
+      <field name="name">Copro: Only associated Apartments</field>
+      <field name="model_id" ref="model_copro_apartment"/>
+      <field name="domain_force">[('coproprietaire_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
+
+    <!-- ======================= Charge ======================= -->
+    <!-- Super-Syndic sees charges on residences they manage -->
+    <record id="rule_charge_for_supers" model="ir.rule">
+      <field name="name">Charge: Super-Syndic</field>
+      <field name="model_id" ref="model_copro_charge"/>
+      <field name="domain_force">[('supersyndic_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_supersyndic'))]"/>
+    </record>
+
+    <!-- Syndic sees charges on residences they manage -->
+    <record id="rule_charge_for_syndics" model="ir.rule">
+      <field name="name">Charge: Syndic</field>
+      <field name="model_id" ref="model_copro_charge"/>
+      <field name="domain_force">[('syndic_ids.user_id', '=', user.id)]</field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_syndic'))]"/>
+    </record>
+    
+    <!-- Copropriétaire sees charges on residences they are associated with -->
+    <record id="rule_charge_for_copro" model="ir.rule">
+      <field name="name">Charge: Copropriétaire</field>
+      <field name="model_id" ref="model_copro_charge"/>
+      <field name="domain_force">
+        [
+          '|',
+          ('syndic_ids',      'in', user.my_copro_syndics.ids),
+          ('supersyndic_ids', 'in', user.my_copro_supers.ids)
+        ]
+      </field>
+      <field name="groups" eval="[(4, ref('copro_manager.group_coproprietaire'))]"/>
+    </record>
   </data>
 </odoo>

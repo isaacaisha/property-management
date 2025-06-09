@@ -13,7 +13,7 @@ from odoo.tools import mute_logger
 
 class DateRangeTypeTest(TransactionCase):
     def setUp(self):
-        super(DateRangeTypeTest, self).setUp()
+        super().setUp()
         self.type = self.env["date.range.type"]
         self.company = self.env["res.company"].create({"name": "Test company"})
         self.company_2 = self.env["res.company"].create(
@@ -77,7 +77,7 @@ class DateRangeTypeTest(TransactionCase):
             }
         )
         self.assertEqual(
-            dr_type.range_name_preview, ">%s<" % year_start.strftime("%d%m%Y")
+            dr_type.range_name_preview, f">{year_start.strftime('%d%m%Y')}<"
         )
 
         self.env["date.range.type"].autogenerate_ranges()
@@ -92,7 +92,7 @@ class DateRangeTypeTest(TransactionCase):
         next_year_month_start = today.replace(day=1) + relativedelta(years=1)
         self.assertEqual(ranges[-1].date_start, next_year_month_start)
         self.assertEqual(
-            ranges[-1].name, ">%s<" % next_year_month_start.strftime("%d%m%Y")
+            ranges[-1].name, f">{next_year_month_start.strftime('%d%m%Y')}<"
         )
 
         # No new ranges get generated anymore this month

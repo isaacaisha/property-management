@@ -1,55 +1,90 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/contact_views.xml -->
+<!--/home/siisi/property-management/dev/custom-addons/copro_manager/views/contact_views.xml -->
 
 <odoo>
-    <!-- List view for Contacts Users -->
+  <data>
+    <!-- list view for Contacts Users -->
     <record id="view_contact_list" model="ir.ui.view">
-        <field name="name">res.users.superuser.list</field>
-        <field name="model">res.users</field>
-        <field name="type">list</field>
-        <field name="arch" type="xml">
-            <list string="Contacts">
-                <field name="name"/>
-                <field name="login"/>
-                <field name="email"/>
-                <field name="groups_id" widget="many2many_tags"/>
-                <field name="active"/>
-            </list>
-        </field>
+      <field name="name">res.users.superuser.list</field>
+      <field name="model">res.users</field>
+      <field name="type">list</field>
+      <field name="priority" eval="20"/>
+      <field name="arch" type="xml">
+        <!--<list string="Contacts" decoration-muted="not active">-->
+        <list string="Contacts">
+          <field name="name"/>
+          <field name="login"/>
+          <!-- New: last‐login datetime -->
+          <field name="login_date" string="Last Authentication" widget="datetime"/>
+          <field name="lang" string="Language"/>
+          <field name="company_id" string="Company"/>
+          <!-- Status boolean -->
+          <!--<field name="active" string="Status"/>-->
+        </list>
+      </field>
     </record>
 
     <!-- Search view for Contacts Users -->
     <record id="view_contact_search" model="ir.ui.view">
-        <field name="name">res.users.superuser.search</field>
-        <field name="model">res.users</field>
-        <field name="type">search</field>
-        <field name="arch" type="xml">
-            <search string="Contacts">
-                <field name="name"/>
-                <field name="login"/>
-                <field name="email"/>
-                <filter name="active" string="Active" domain="[('active','=',True)]"/>
-                <filter name="inactive" string="Inactive" domain="[('active','=',False)]"/>
-            </search>
-        </field>
+      <field name="name">res.users.superuser.search</field>
+      <field name="model">res.users</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Contacts">
+          <field name="name"/>
+          <field name="login"/>
+          <field name="email"/>
+          <filter name="active" string="Active" domain="[('active','=',True)]"/>
+          <filter name="inactive" string="Inactive" domain="[('active','=',False)]"/>
+          <!-- New: filter by recent login -->
+          <!--<filter name="recent_login" string="Logged in Last 7 days"
+                  domain="['|',('login_date','>=', (context_today() - relativedelta(days=7)).strftime('%%Y-%%m-%%d %%H:%%M:%%S'))]"
+                  help="Users authenticated within the last week"/>-->
+        </search>
+        <group expand="1" string="Group By">
+            <filter name="group" context="{'group_by': 'groups_id'}"/>
+        </group>
+      </field>
     </record>
 
     <!-- Form view for Contacts Users -->
     <record id="view_contact_form" model="ir.ui.view">
-        <field name="name">res.users.superuser.form</field>
-        <field name="model">res.users</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="Contacts">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="login"/>
-                        <field name="email"/>
-                        <field name="groups_id" widget="many2many_tags"/>
-                        <field name="active"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
+      <field name="name">res.users.superuser.form</field>
+      <field name="model">res.users</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Contact">
+          <sheet>
+            <group>
+              <group>
+                <field name="name"/>
+                <field name="login"/>
+                <field name="email"/>
+              </group>
+              <group>
+                <!-- New: last‐login + status -->
+                <field name="login_date" string="Last Authentication" readonly="1"/>
+                <field name="active" string="Status"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Access Rights">
+                <field name="groups_id" widget="many2many_tags"/>
+              </page>
+              <page string="Preferences">
+                <field name="lang"/>
+                <field name="tz"/>
+              </page>
+            </notebook>
+            <footer>
+              <button string="Deactivate" name="toggle_active" type="object"
+                      attrs="{'invisible': [('active','=',False)]}" class="btn-secondary"/>
+              <button string="Activate"   name="toggle_active" type="object"
+                      attrs="{'invisible': [('active','=',True)]}"  class="btn-primary"/>
+              <button string="Save"       type="object" name="write"              class="btn-primary"/>
+            </footer>
+          </sheet>
+        </form>
+      </field>
     </record>
+  </data>
 </odoo>

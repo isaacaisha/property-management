@@ -1,0 +1,41 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/syndic_demo.xml -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Define the group 'group_syndic' -->
+        <record id="group_syndic" model="res.groups">
+            <field name="name">Syndic</field>
+            <field name="category_id" ref="copro_manager.group_syndic"/>
+        </record>
+
+        <!-- Define Syndic Alpha -->
+        <record id="syndic_1" model="copro.syndic">
+            <field name="name">Syndic Alpha</field>
+            <field name="email">alpha@syndic.com</field>
+            <field name="phone">+12 345 678 919</field>
+            <field name="address">987 Demo Street</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_1"/>
+            <field name="license_id" ref="copro_manager.license_standard"/>
+        </record>
+
+        <!-- Define Syndic Beta -->
+        <record id="syndic_2" model="copro.syndic">
+            <field name="name">Syndic Beta</field>
+            <field name="email">beta@syndic.com</field>
+            <field name="phone">+98 765 432 991</field>
+            <field name="address">789 Demo Street</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_2"/>
+            <field name="license_id" ref="copro_manager.abc_license_premium"/>
+        </record>
+
+        <!-- Define Syndic Xtra -->
+        <record id="syndic_3" model="copro.syndic">
+            <field name="name">Syndic Xtra</field>
+            <field name="email">xtra@syndic.com</field>
+            <field name="phone">+73 765 432 991</field>
+            <field name="address">595 Demo Street</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_3"/>
+            <field name="license_id" ref="copro_manager.license_pro"/>
+        </record>
+    </data>
+</odoo>

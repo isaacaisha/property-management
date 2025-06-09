@@ -8,7 +8,7 @@ __pycache__/
 **/*.log
 *.log
 *.pid
-**/data/
+#**/data/
 **/logs/
 
 # Ignore virtual environments and secrets

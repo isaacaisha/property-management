@@ -1,3 +1,3 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/__init__.py
+# /home/siisi/property-management/dev/custom-addons/copro_manager/__init__.py
 
 from . import models

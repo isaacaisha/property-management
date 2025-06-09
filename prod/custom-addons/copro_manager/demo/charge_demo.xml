@@ -1,0 +1,42 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/charge_demo.xml -->
+
+<odoo>
+  <data noupdate="1">
+  
+    <!-- Demo Charge 1: Electricity Bill for Residence 1 -->
+    <record id="demo_charge_1" model="copro.charge">
+      <field name="name">Electricity Bill April 2025</field>
+      <field name="amount">1200.00</field>
+      <field name="date">2025-04-01</field>
+      <field name="residence_id" ref="copro_manager.residence_1"/>
+    </record>
+    <!-- Distribute that charge across apartments in Residence 1 -->
+    <function model="copro.charge" name="action_distribute_charges">
+      <value eval="[ ref('copro_manager.demo_charge_1') ]"/>
+    </function>
+  
+    <!-- Demo Charge 2: Water Bill for Residence 2 -->
+    <record id="demo_charge_2" model="copro.charge">
+      <field name="name">Water Bill April 2025</field>
+      <field name="amount">800.00</field>
+      <field name="date">2025-04-02</field>
+      <field name="residence_id" ref="copro_manager.residence_2"/>
+    </record>
+    <!-- Distribute that charge across apartments in Residence 2 -->
+    <function model="copro.charge" name="action_distribute_charges">
+      <value eval="[ ref('copro_manager.demo_charge_2') ]"/>
+    </function>
+  
+    <!-- (Optional) Demo Charge 3: Cleaning Fee for Residence 3 -->
+    <record id="demo_charge_3" model="copro.charge">
+      <field name="name">Common Area Cleaning Fee April 2025</field>
+      <field name="amount">500.00</field>
+      <field name="date">2025-04-03</field>
+      <field name="residence_id" ref="copro_manager.residence_3"/>
+    </record>
+    <function model="copro.charge" name="action_distribute_charges">
+      <value eval="[ ref('copro_manager.demo_charge_3') ]"/>
+    </function>
+  
+  </data>
+</odoo>

@@ -1,44 +1,103 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/apartment_views.xml -->
+<!-- /home/siisi/property-management/dev/custom-addons/copro_manager/views/apartment_views.xml -->
 
 <odoo>
-    <!-- List View for Apartments -->
-    <record id="view_apartment_list" model="ir.ui.view">
-        <field name="name">copro.apartment.list</field>
-        <field name="model">copro.apartment</field>
-        <field name="type">list</field>
-        <field name="arch" type="xml">
-            <list string="Apartments">
-                <field name="name"/>
-                <field name="number"/>
-                <field name="floor"/>
-                <field name="residence_ids" widget="many2many_tags"/>
-                <!--<field name="superuser_ids" widget="many2many_tags"/>-->
-                <field name="supersyndic_ids" widget="many2many_tags"/>
-                <field name="syndic_ids" widget="many2many_tags"/>
-                <field name="created_by" widget="many2one_avatar"/>
-            </list>
-        </field>
-    </record>
+    <data>
+        <!-- Search View -->
+        <record id="view_apartment_search" model="ir.ui.view">
+            <field name="name">copro.apartment.search</field>
+            <field name="model">copro.apartment</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <!-- Quick search fields -->
+                    <field name="name"/>
 
-    <!-- Form View for Apartments -->
-    <record id="view_apartment_form" model="ir.ui.view">
-        <field name="name">copro.apartment.form</field>
-        <field name="model">copro.apartment</field>
-        <field name="arch" type="xml">
-            <form string="Apartment">
-                <sheet>
-                    <group>
-                        <field name="name"/>
-                        <field name="number"/>
-                        <field name="floor"/>
-                        <field name="residence_ids" widget="many2many_tags"/>
-                        <!--<field name="superuser_ids" widget="many2many_tags"/>-->
-                        <field name="supersyndic_ids" widget="many2many_tags"/>
-                        <field name="syndic_ids" widget="many2many_tags"/>
+                    <!--<field name="superuser_ids"/>-->
+                    <field name="supersyndic_ids"/>
+                    <field name="syndic_ids"/>
+                    
+                    <!-- Predefined filters -->
+                    <filter string="Recent" 
+                            name="recent" 
+                            domain="[('created_at', '&gt;', context_today().strftime('%%Y-01-01'))]"/>
+                    
+                    <filter string="Created by me" 
+                            name="my_residences" 
+                            domain="[('created_by', '=', uid)]"/>
+
+                    <filter string="Active" 
+                            name="active" 
+                            domain="[('active', '=', True)]"/>
+                            
+                    <filter string="Archived" 
+                            name="archived" 
+                            domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- list View for Apartments -->
+        <record id="view_apartment_list" model="ir.ui.view">
+            <field name="name">copro.apartment.list</field>
+            <field name="model">copro.apartment</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Apartments">
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="floor"/>
+                    <field name="tantieme"/>
+                    <field name="residence_ids" widget="many2many_tags"/>
+                    <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                    <field name="supersyndic_ids" widget="many2many_tags"/>
+                    <field name="syndic_ids" widget="many2many_tags"/>
+                    <field name="coproprietaire_ids" widget="many2many_tags"/>
+                    <field name="created_by" widget="many2one_avatar"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View for Apartments -->
+        <record id="view_apartment_form" model="ir.ui.view">
+            <field name="name">copro.apartment.form</field>
+            <field name="model">copro.apartment</field>
+            <field name="arch" type="xml">
+                <form string="Apartment" decoration-active="active">
+                    <field name="active" invisible="1"/>
+                    <header>
+                        <button name="toggle_active"
+                                type="object"
+                                string="Archive/Unarchive"
+                                class="btn-secondary"
+                                icon="fa-archive"
+                                modifiers="{'invisible': [('active','=',False)]}"
+                        />
+                        <button name="toggle_active"
+                                type="object"
+                                string="Unarchive"
+                                class="btn-primary"
+                                icon="fa-undo"
+                                modifiers="{'invisible': [('active','=',True)]}"
+                        />
                         <field name="created_by" widget="many2one_avatar"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                        <field name="created_at"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="tantieme"/>
+                            <field name="number"/>
+                            <field name="floor"/>
+                            <field name="residence_ids" widget="many2many_tags"/>
+                            <!--<field name="superuser_ids" widget="many2many_tags"/>-->
+                            <field name="supersyndic_ids" widget="many2many_tags"/>
+                            <field name="syndic_ids" widget="many2many_tags"/>
+                            <field name="coproprietaire_ids" widget="many2many_tags"/>
+                            <field name="created_by" widget="many2one_avatar"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
 </odoo>

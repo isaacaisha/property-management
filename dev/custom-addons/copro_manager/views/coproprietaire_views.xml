@@ -1,7 +1,7 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/coproprietaire_views.xml -->
+<!-- /home/siisi/property-management/dev/custom-addons/copro_manager/views/coproprietaire_views.xml -->
 
 <odoo>
-    <!-- List view for Copropriétaires -->
+    <!-- list view for Copropriétaires -->
     <record id="view_coproprietaire_list" model="ir.ui.view">
         <field name="name">coproprietaire.list</field>
         <field name="model">copro.coproprietaire</field>
@@ -11,6 +11,8 @@
                 <field name="name"/>
                 <field name="email"/>
                 <field name="phone"/>
+                <field name="residence_id"/>
+                <field name="apartment_id"/>
                 <field name="address"/>
                 <field name="supersyndic_id"/>
                 <field name="syndic_id"/>
@@ -30,6 +32,15 @@
                         <field name="name"/>
                         <field name="email"/>
                         <field name="phone"/>
+                        <!-- Pick the parent residence first -->
+                        <field name="residence_id" 
+                               options="{'no_create': True}" 
+                               string="Residence"/>
+                        <!-- Then pick an apartment in that residence -->
+                        <field name="apartment_id" 
+                               domain="[('residence_ids','=', residence_id)]"
+                               options="{'no_create': True}"
+                               string="Apartment"/>
                         <field name="address"/>
                         <field name="supersyndic_id"/>
                         <field name="syndic_id"/>

@@ -3,6 +3,8 @@ access_superuser_module,Superuser Access to Apps,base.model_ir_module_module,bas
 access_superuser_users,Superuser Access to Users,base.model_res_users,base.group_system,1,1,1,1
 access_superuser_supersyndic,Superuser Access to Supersyndic,copro_manager.model_copro_supersyndic,base.group_system,1,1,1,1
 access_superuser_syndic,Superuser Access to Syndic,copro_manager.model_copro_syndic,base.group_system,1,1,1,1
+access_superuser_coproprietaire,Superuser Access to Coproprietaire,copro_manager.model_copro_coproprietaire,base.group_system,1,1,1,1
+access_superuser_prestataire,Superuser Access to Prestataire,copro_manager.model_copro_prestataire,base.group_system,1,1,1,1
 access_copro_users,access.copro.users,base.model_res_users,copro_manager.group_coproprietaire,1,0,0,0
 access_presta_users,access.presta.users,base.model_res_users,copro_manager.group_prestataire,1,0,0,0
 
@@ -18,6 +20,7 @@ access_syndic_superuser,access.syndic.superuser,copro_manager.model_copro_syndic
 access_syndic_user,access.syndic,copro_manager.model_copro_syndic,copro_manager.group_syndic,1,0,0,0
 access_copro_syndic,access.copro.syndic,copro_manager.model_copro_syndic,copro_manager.group_coproprietaire,1,0,0,0
 access_presta_syndic,access.presta.syndic,copro_manager.model_copro_syndic,copro_manager.group_prestataire,1,0,0,0
+access_supersyndic_syndic_read,access.supersyndic.syndic.read,copro_manager.model_copro_supersyndic,copro_manager.group_syndic,1,0,0,0
 access_syndic_copro,access.syndic.copro,copro_manager.model_copro_coproprietaire,copro_manager.group_syndic,1,1,1,1
 access_syndic_presta,access.syndic.presta,copro_manager.model_copro_prestataire,copro_manager.group_syndic,1,1,1,1
 
@@ -29,6 +32,7 @@ access_copro_presta,access.copro.presta,copro_manager.model_copro_prestataire,co
 
 access_residence_superuser,access.residence.superuser,copro_manager.model_copro_residence,base.group_system,1,1,1,1
 access_copro_residence_superuser,access.residence,copro_manager.model_copro_residence,base.group_system,1,1,1,1
+access_residence_supersyndic,access.residence.supersyndic,copro_manager.model_copro_residence,copro_manager.group_supersyndic,1,1,1,1
 access_copro_residence_syndic,access.residence,copro_manager.model_copro_residence,copro_manager.group_syndic,1,1,1,1
 access_copro_residence,access.copro.residence,copro_manager.model_copro_residence,copro_manager.group_coproprietaire,1,0,0,0
 access_presta_residence,access.presta.residence,copro_manager.model_copro_residence,copro_manager.group_prestataire,1,0,0,0
@@ -40,3 +44,13 @@ access_apartment_copro,Co-owner Access to Apartment,copro_manager.model_copro_ap
 access_apartment_presta,Service Provider Access to Apartment,copro_manager.model_copro_apartment,copro_manager.group_prestataire,1,0,0,0
 
 access_license_user,access.license,copro_manager.model_copro_license,base.group_system,1,1,1,1
+
+access_charge_superuser,Superuser: Charge,copro_manager.model_copro_charge,base.group_system,1,1,1,1
+access_charge_supersyndic,Super-Syndic: Charge,copro_manager.model_copro_charge,copro_manager.group_supersyndic,1,1,1,1
+access_charge_syndic,Syndic: Charge,copro_manager.model_copro_charge,copro_manager.group_syndic,1,1,0,0
+access_charge_copro,Copropriétaire: Charge,copro_manager.model_copro_charge,copro_manager.group_coproprietaire,1,0,0,0
+
+access_charge_dist_superuser,Superuser: Charge Lines,copro_manager.model_copro_charge_distribution,base.group_system,1,1,1,1
+access_charge_dist_supersyndic,Super-Syndic: Charge Lines,copro_manager.model_copro_charge_distribution,copro_manager.group_supersyndic,1,1,1,1
+access_charge_dist_syndic,Syndic: Charge Lines,copro_manager.model_copro_charge_distribution,copro_manager.group_syndic,1,1,0,0
+access_charge_dist_copro,Copropriétaire: Charge Lines,copro_manager.model_copro_charge_distribution,copro_manager.group_coproprietaire,1,0,0,0

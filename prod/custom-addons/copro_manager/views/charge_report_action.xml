@@ -1,0 +1,25 @@
+<!-- /home/siisi/property-management/prod/custom-addons/copro_manager/views/charge_report_action.xml -->
+
+<!--<odoo>
+    <report 
+      id="copro_charge_report_action"
+      model="copro.charge"
+      string="Print Charge Report"
+      report_type="qweb-pdf"
+      name="copro_manager.report_charge_document"
+      file="copro_manager.report_charge_document"
+      print_report_name="'Charge Report - %s' % (object.name)"
+    />
+</odoo>-->
+
+<odoo>
+  <data>
+    <record id="copro_charge_report_action" model="ir.actions.report">
+      <field name="name">Charge Report</field>
+      <field name="model">copro.charge</field>
+      <field name="report_type">qweb-pdf</field>
+      <field name="report_name">copro_manager.report_charge_document</field>
+      <field name="print_report_name">'Charge-'+object.name</field>
+    </record>
+  </data>
+</odoo>

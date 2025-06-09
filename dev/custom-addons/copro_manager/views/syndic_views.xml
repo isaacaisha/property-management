@@ -1,7 +1,7 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/syndic_views.xml -->
+<!-- /home/siisi/property-management/dev/custom-addons/copro_manager/views/syndic_views.xml -->
 
 <odoo>
-    <!-- List view for Syndics -->
+    <!-- list view for Syndics -->
     <record id="view_syndic_list" model="ir.ui.view">
         <field name="name">syndic.list</field>
         <field name="model">copro.syndic</field>
@@ -32,11 +32,12 @@
                         <field name="name"/>
                         <field name="email"/>
                         <field name="phone"/>
-                        <field name="license_id"/>
-                        <!--<field name="license_type" groups="base.group_system"/>
-                        <field name="license_start" groups="base.group_system"/>
-                        <field name="license_end" groups="base.group_system"/>-->
+                        <!-- license info is read‑only -->
                         <field name="supersyndic_id"/>
+                        <field name="license_id"     readonly="1"/>
+                        <field name="license_type"   readonly="1"/>
+                        <field name="license_start"  readonly="1"/>
+                        <field name="license_end"    readonly="1"/>
                     </group>
                 </sheet>
             </form>

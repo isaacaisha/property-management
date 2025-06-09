@@ -1,18 +1,18 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/menus.xml -->
+<!-- /home/siisi/property-management/dev/custom-addons/copro_manager/views/menus.xml -->
 
 <odoo>
     <data>
         <!-- Top-level menu for your module -->
         <menuitem id="menu_copro_manager_root" name="Copro Manager" sequence="10"/>
 
-        <!-- Superusers (visible only to superusers) -->
-        <record id="action_superuser_list" model="ir.actions.act_window">
+        <!-- Contacts (visible only to superusers) -->
+        <!--<record id="action_contact_list" model="ir.actions.act_window">
             <field name="name">Contacts</field>
             <field name="res_model">res.users</field>
             <field name="view_mode">list,form</field>
         </record>
-        <menuitem id="menu_superuser" name="Contacts" parent="menu_copro_manager_root" sequence="15"
-                  action="action_superuser_list" groups="base.group_system"/>
+        <menuitem id="menu_contact" name="Contacts" parent="menu_copro_manager_root" sequence="15"
+                  action="action_contact_list" groups="base.group_system"/>-->
 
         <record id="action_supersyndic_list" model="ir.actions.act_window">
             <field name="name">Super Syndics</field>
@@ -70,5 +70,18 @@
         </record>
         <menuitem id="menu_apartment" name="Apartments" parent="menu_copro_manager_root" sequence="50"
                   action="action_apartment_list"/>
+
+        <record id="action_charge_list" model="ir.actions.act_window">
+            <field name="name">Copropriétaires Charges</field>
+            <field name="res_model">copro.charge</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create your first co-ownership charge
+              </p>
+            </field>
+        </record>
+        <menuitem id="menu_tantieme_charge" name="Charges" parent="menu_copro_manager_root" sequence="55"
+                  action="action_charge_list"/>
     </data>
 </odoo>

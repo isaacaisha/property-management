@@ -1,4 +1,4 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/models/license.py
+# /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/license.py
 
 from odoo import models, fields, api
 from odoo.exceptions import AccessError
@@ -13,6 +13,7 @@ class Licence(models.Model):
         ('standard', 'Standard'),
         ('premium', 'Premium'),
         ('pro', 'Pro'),
+        ('abc_premium', 'ABC Premium'),
     ], string="Type de Licence", required=True)
     license_start = fields.Date(string="Début le:", required=True)
     license_end = fields.Date(string="expire le:", required=True)

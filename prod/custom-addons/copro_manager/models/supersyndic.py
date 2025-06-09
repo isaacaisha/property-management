@@ -1,4 +1,4 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/models/supersyndic.py
+# /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/supersyndic.py
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -11,10 +11,26 @@ class Supersyndic(models.Model):
 
     # Existing fields
     name = fields.Char(string="Nom du Super Syndic", required=True)
-    email = fields.Char(string="Email")
-    phone = fields.Char(string="Téléphone")
-    address = fields.Text(string="Adresse")
+    email = fields.Char(string="Email", required=True)
+    phone = fields.Char(string="Téléphone", required=True)
+    address = fields.Text(string="Adresse", required=True)
     user_id = fields.Many2one('res.users', string="User Account", ondelete='set null')
+    syndic_ids = fields.One2many(
+        'copro.syndic',
+        'supersyndic_id',
+        string='Managed Syndics',
+    )
+    coproprietaire_ids = fields.One2many(
+        'copro.coproprietaire',
+        'supersyndic_id',
+        string='Managed Copropriétaires',
+    )
+    prestataire_ids = fields.One2many(
+        'copro.prestataire',
+        'supersyndic_id',
+        string='Managed Prestataires',
+    )
+    
     residence_ids = fields.Many2many(
         'copro.residence',
         relation='residence_supersyndic_rel',
@@ -25,14 +41,23 @@ class Supersyndic(models.Model):
     apartment_id = fields.Many2one('copro.apartment', string="Apartment")
 
     # Fields for license creation
-    license_type = fields.Selection([
-        ('standard', 'Standard'),
-        ('premium', 'Premium'),
-        ('pro', 'Pro'),
-    ], string="License Type")
-    license_start = fields.Date(string="License Start Date")
-    license_end = fields.Date(string="License End Date")
     license_id = fields.Many2one('copro.license', string="License")
+
+    license_type  = fields.Selection(
+        related='license_id.license_type',
+        readonly=True,
+        string="Type de Licence",
+    )
+    license_start = fields.Date(
+        related='license_id.license_start',
+        readonly=True,
+        string="Début de Licence",
+    )
+    license_end   = fields.Date(
+        related='license_id.license_end',
+        readonly=True,
+        string="Fin de Licence",
+    )
 
     @api.model
     def create(self, vals):

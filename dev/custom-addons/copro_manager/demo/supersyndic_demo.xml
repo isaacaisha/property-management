@@ -1,0 +1,38 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/supersyndic_demo.xml -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Define the group 'group_supersyndic' -->
+        <record id="group_supersyndic" model="res.groups">
+            <field name="name">Super Syndic</field>
+            <field name="category_id" ref="copro_manager.group_supersyndic"/>
+        </record>
+
+        <!-- Define Supersyndic Boss -->
+        <record id="supersyndic_1" model="copro.supersyndic">
+            <field name="name">Super Syndic Boss</field>
+            <field name="email">boss@supersyndic.com</field>
+            <field name="phone">+23 345 678 653</field>
+            <field name="address">123 Demo Street</field>
+            <field name="license_id" ref="copro_manager.license_standard"/>
+        </record>
+
+        <!-- Define Supersyndic Jefa -->
+        <record id="supersyndic_2" model="copro.supersyndic">
+            <field name="name">Super Syndic Jefa</field>
+            <field name="email">jefa@supersyndic.com</field>
+            <field name="phone">+17 765 432 339</field>
+            <field name="address">321 Demo Street</field>
+            <field name="license_id" ref="copro_manager.abc_license_premium"/>
+        </record>
+
+        <!-- Define Supersyndic Capo -->
+        <record id="supersyndic_3" model="copro.supersyndic">
+            <field name="name">Super Syndic Capo</field>
+            <field name="email">capo@supersyndic.com</field>
+            <field name="phone">+55 765 432 339</field>
+            <field name="address">007 Demo Street</field>
+            <field name="license_id" ref="copro_manager.license_pro"/>
+        </record>
+    </data>
+</odoo>

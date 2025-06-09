@@ -1,0 +1,44 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/prestataire_demo.xml -->
+
+<odoo>
+    <data noupdate="1">
+        <!-- Define the group 'group_prestataire' -->
+        <record id="group_prestataire" model="res.groups">
+            <field name="name">Prestataire</field>
+            <field name="category_id" ref="copro_manager.group_prestataire"/>
+        </record>
+
+        <!-- Define Prestataire Plomb -->
+        <record id="prestataire_1" model="copro.prestataire">
+            <field name="name">Presta Plomb</field>
+            <field name="email">plomb@presta.com</field>
+            <field name="phone">+33 123 456 789</field>
+            <field name="address">91, rue des Plomberie</field>
+            <field name="service_type">plumber</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_1"/>
+            <field name="syndic_id" ref="copro_manager.syndic_1"/>
+        </record>
+
+        <!-- Define Prestataire Voltage -->
+        <record id="prestataire_2" model="copro.prestataire">
+            <field name="name">Presta Voltage</field>
+            <field name="email">volt@presta.com</field>
+            <field name="phone">+33 987 654 321</field>
+            <field name="address">45, avenue de la Lumière</field>
+            <field name="service_type">electrician</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_2"/>
+            <field name="syndic_id" ref="copro_manager.syndic_2"/>
+        </record>
+
+        <!-- Define Prestataire Secu -->
+        <record id="prestataire_3" model="copro.prestataire">
+            <field name="name">Presta Secu</field>
+            <field name="email">secu@presta.com</field>
+            <field name="phone">+33 555 151 721</field>
+            <field name="address">19, boulevard Relax</field>
+            <field name="service_type">security</field>
+            <field name="supersyndic_id" ref="copro_manager.supersyndic_3"/>
+            <field name="syndic_id" ref="copro_manager.syndic_3"/>
+        </record>
+    </data>
+</odoo>

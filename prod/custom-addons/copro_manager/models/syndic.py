@@ -1,4 +1,4 @@
-# /home/siisi/super/odoo/scratch/addons/copro_manager/models/syndic.py
+# /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/syndic.py
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -11,26 +11,58 @@ class Syndic(models.Model):
 
     # Existing fields
     name = fields.Char(string="Nom du Syndic", required=True)
-    email = fields.Char(string="Email")
-    phone = fields.Char(string="Téléphone")
+    email = fields.Char(string="Email", required=True)
+    phone = fields.Char(string="Téléphone", required=True)
     address = fields.Text(string="Adresse")
     
-    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Associé")
+    supersyndic_id = fields.Many2one('copro.supersyndic', string="Super Syndic Associé", required=True)
     user_id = fields.Many2one('res.users', string="User Account", ondelete='set null')
 
-    # Fields for license creation
-    license_type = fields.Selection([
-        ('standard', 'Standard'),
-        ('premium', 'Premium'),
-        ('pro', 'Pro'),
-    ], string="License Type")
-    license_start = fields.Date(string="License Start Date")
-    license_end = fields.Date(string="License End Date")
-    license_id = fields.Many2one('copro.license', string="License")
+    # Show the SuperSyndic’s license on this record
+    license_id     = fields.Many2one(
+        'copro.license',
+        related='supersyndic_id.license_id',
+        readonly=True,
+        store=True,
+        string="License",
+    )
+    license_type   = fields.Selection(
+        related='supersyndic_id.license_id.license_type',
+        readonly=True,
+        store=True,
+        string="Type de Licence",
+    )
+    license_start  = fields.Date(
+        related='supersyndic_id.license_id.license_start',
+        readonly=True,
+        store=True,
+        string="Début de Licence",
+    )
+    license_end    = fields.Date(
+        related='supersyndic_id.license_id.license_end',
+        readonly=True,
+        store=True,
+        string="Fin de Licence",
+    )
+    
+    coproprietaire_ids = fields.Many2many(
+        'copro.coproprietaire',
+        relation='syndic_coproprietaire_rel',
+        column1='syndic_id',
+        column2='coproprietaire_id',
+        string='Managed Coproprietaires',
+    )
+    prestataire_ids = fields.Many2many(
+        'copro.prestataire',
+        relation='syndic_prestataire_rel',
+        column1='syndic_id',
+        column2='prestataire_id',
+        string='Managed Prestataires',
+    )
 
     residence_ids = fields.Many2many(
         'copro.residence',
-        relation='residence_syndic_rel',
+        relation='syndic_residence_rel',
         column1='syndic_id',
         column2='residence_id',
         string='Managed Residences'

@@ -1,0 +1,37 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/license_demo.xml -->
+
+<odoo>
+  <data noupdate="1">
+    <!-- Standard License -->
+    <record id="license_standard" model="copro.license">
+      <field name="name">Standard License</field>
+      <field name="license_type">standard</field>
+      <field name="license_start">2025-01-01</field>
+      <field name="license_end">2025-12-31</field>
+    </record>
+
+    <!-- Premium License -->
+    <record id="license_premium" model="copro.license">
+      <field name="name">Premium License</field>
+      <field name="license_type">premium</field>
+      <field name="license_start">2025-01-01</field>
+      <field name="license_end">2025-12-31</field>
+    </record>
+
+    <!-- Pro License -->
+    <record id="license_pro" model="copro.license">
+      <field name="name">Pro License</field>
+      <field name="license_type">pro</field>
+      <field name="license_start">2025-01-01</field>
+      <field name="license_end">2025-12-31</field>
+    </record>
+
+    <!-- ABC Premium License -->
+    <record id="abc_license_premium" model="copro.license">
+      <field name="name">ABC Premium</field>
+      <field name="license_type">abc_premium</field>
+      <field name="license_start">2025-07-12</field>
+      <field name="license_end">2025-07-29</field>
+    </record>
+  </data>
+</odoo>

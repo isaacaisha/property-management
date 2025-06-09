@@ -1,0 +1,41 @@
+<!-- /home/siisi/property-management/dev/custom-addons/copro_manager/views/charge_report_template.xml -->
+
+<odoo>
+    <template id="report_charge_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="charge">
+              <div class="page">
+                <p><strong>Date:</strong> 
+                <span t-field="charge.date"
+                      t-field-options="{
+                        'widget': 'date',
+                        'format': 'dd/MM/YYYY'
+                      }"/>
+                </p>
+                <h2>Charge: <t t-esc="charge.name"/></h2>
+                <p><strong>Residence:</strong> <t t-esc="charge.residence_id.name"/></p>
+                <p><strong>Total Amount:</strong> <t t-esc="charge.amount"/></p>
+                <br/>
+
+                <h4>Distribution Lines:</h4>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                        <th>Apartment</th>
+                        <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="charge.distribution_line_ids" t-as="line">
+                        <tr>
+                            <td><t t-esc="line.apartment_id.name"/></td>
+                            <td><t t-esc="line.amount"/></td>
+                        </tr>
+                        </t>
+                    </tbody>
+                </table>
+              </div>
+            </t>
+        </t>
+    </template>
+</odoo>

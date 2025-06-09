@@ -1,7 +1,7 @@
-<!-- /home/siisi/super/odoo/scratch/addons/copro_manager/views/apps_menu.xml -->
+<!-- /home/siisi/property-management/prod/custom-addons/copro_manager/views/apps_menu.xml -->
 
 <odoo>
-  <data>
+  <data noupdate="1">
     <!-- Override the standard Apps menu so that only superusers see it -->
     <record id="base.menu_apps" model="ir.ui.menu">
       <field name="groups_id" eval="[(6, 0, [ref('base.group_system')])]"/>

@@ -1,0 +1,84 @@
+<!-- /home/gestion/manage/crm/scratch/custom-addons/copro_manager/demo/coproprietaire_demo.xml -->
+
+<odoo>
+  <data noupdate="1">
+
+    <!-- Define the group 'group_coproprietaire' -->
+    <record id="group_coproprietaire" model="res.groups">
+        <field name="name">Copropriétaire</field>
+        <field name="category_id" ref="copro_manager.group_coproprietaire"/>
+    </record>
+
+    <!-- Define Copropriétaire Siisi -->
+    <record id="copro_1" model="copro.coproprietaire">
+        <field name="name">Copro Siisi</field>
+        <field name="email">siisi@copro.com</field>
+        <field name="phone">+12 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_1"/>
+        <field name="apartment_id" ref="copro_manager.apartment_1"/>
+        <field name="address">127, rue de la Pépêche</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_1"/>
+        <field name="syndic_id" ref="copro_manager.syndic_1"/>
+    </record>
+
+    <!-- Define Copropriétaire Chacal -->
+    <record id="copro_2" model="copro.coproprietaire">
+        <field name="name">Copro Chacal</field>
+        <field name="email">chacal@copro.com</field>
+        <field name="phone">+12 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_2"/>
+        <field name="apartment_id" ref="copro_manager.apartment_2"/>
+        <field name="address">19, Avenue de la Joie</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_2"/>
+        <field name="syndic_id" ref="copro_manager.syndic_2"/>
+    </record>
+
+    <!-- Define Copropriétaire Super -->
+    <record id="copro_3" model="copro.coproprietaire">
+        <field name="name">Copro Super</field>
+        <field name="email">super@copro.com</field>
+        <field name="phone">+91 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_3"/>
+        <field name="apartment_id" ref="copro_manager.apartment_3"/>
+        <field name="address">55, Boulevard du Bandit</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_3"/>
+        <field name="syndic_id" ref="copro_manager.syndic_3"/>
+    </record>
+
+    <!-- Define Copropriétaire Delta -->
+    <record id="copro_4" model="copro.coproprietaire">
+        <field name="name">Copro Delta</field>
+        <field name="email">delta@copro.com</field>
+        <field name="phone">+12 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_1"/>
+        <field name="apartment_id" ref="copro_manager.apartment_4"/>
+        <field name="address">127, rue de la Gloire</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_1"/>
+        <field name="syndic_id" ref="copro_manager.syndic_1"/>
+    </record>
+
+    <!-- Define Copropriétaire Omega -->
+    <record id="copro_5" model="copro.coproprietaire">
+        <field name="name">Copro Omega</field>
+        <field name="email">omega@copro.com</field>
+        <field name="phone">+12 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_2"/>
+        <field name="apartment_id" ref="copro_manager.apartment_5"/>
+        <field name="address">19, Avenue de la Pitié</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_2"/>
+        <field name="syndic_id" ref="copro_manager.syndic_2"/>
+    </record>
+
+    <!-- Define Copropriétaire Pasta -->
+    <record id="copro_6" model="copro.coproprietaire">
+        <field name="name">Copro Pasta</field>
+        <field name="email">pasta@copro.com</field>
+        <field name="phone">+91 345 678 919</field>
+        <field name="residence_id" ref="copro_manager.residence_3"/>
+        <field name="apartment_id" ref="copro_manager.apartment_6"/>
+        <field name="address">55, Boulevard de la Foi</field>
+        <field name="supersyndic_id" ref="copro_manager.supersyndic_3"/>
+        <field name="syndic_id" ref="copro_manager.syndic_3"/>
+    </record>
+  </data>
+</odoo>

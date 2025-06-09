@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-01 02:44+0000\n"
-"PO-Revision-Date: 2025-01-27 12:06+0000\n"
+"PO-Revision-Date: 2025-05-12 09:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,27 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(name)s is not a valid range (%(date_start)s > %(date_end)s)"
 msgstr "%(name)s non è un intervallo valido (%(date_start)s > %(date_end)s)"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range.py:0
-#, python-format
 msgid "%(thisname)s overlaps %(dtname)s"
 msgstr "%(thisname)s si sovrappone a %(dtname)s"
-
-#. module: date_range
-#: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
-msgid "&amp;nbsp;"
-msgstr "&amp;nbsp;"
 
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.date_range_generator_view_form
@@ -72,14 +64,12 @@ msgstr "Consentire sovrapposizione"
 #. module: date_range
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_search
-#: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_form_view
 #: model_terms:ir.ui.view,arch_db:date_range.view_date_range_type_search
 msgid "Archived"
 msgstr "In archivio"
 
 #. module: date_range
 #: model:ir.actions.server,name:date_range.ir_cron_autocreate_ir_actions_server
-#: model:ir.cron,cron_name:date_range.ir_cron_autocreate
 msgid "Auto-generate date ranges"
 msgstr "Intervalli date auto-generati"
 
@@ -160,13 +150,13 @@ msgstr "Tipo intervallo data"
 #: model:ir.actions.act_window,name:date_range.date_range_type_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_type_action
 msgid "Date Range Types"
-msgstr "Tipi di intervallo data"
+msgstr "Tipi di intervallo date"
 
 #. module: date_range
 #: model:ir.actions.act_window,name:date_range.date_range_action
 #: model:ir.ui.menu,name:date_range.menu_date_range_action
 msgid "Date Ranges"
-msgstr "Intervalli data"
+msgstr "Intervalli date"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__date_ranges_exist
@@ -257,16 +247,8 @@ msgstr ""
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Invalid name expression: %s"
 msgstr "Espressione nome non valido: %s"
-
-#. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_generator____last_update
-#: model:ir.model.fields,field_description:date_range.field_date_range_type____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range__write_uid
@@ -296,7 +278,6 @@ msgstr "Nome"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "No ranges to generate with these settings"
 msgstr "Non ci sono intervalli da generare con queste impostazioni"
 
@@ -319,23 +300,21 @@ msgstr "Parametri"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_search_mixin.py:0
-#, python-format
 msgid "Period"
 msgstr "Periodo"
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please enter an end date, or the number of ranges to generate."
 msgstr "Inserire la data fine o il numero di intervalli da generare."
 
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid "Please set a prefix or an expression to generate the range names."
-msgstr "Impostare un prefisso o una espressione per generare i nomi intervallo."
+msgstr ""
+"Impostare un prefisso o una espressione per generare i nomi intervallo."
 
 #. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__range_name_preview
@@ -374,7 +353,6 @@ msgstr "Data iniziale"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/wizard/date_range_generator.py:0
-#, python-format
 msgid ""
 "The Company in the Date Range Generator and in Date Range Type must be the "
 "same."
@@ -403,11 +381,6 @@ msgid "Type"
 msgstr "Tipo"
 
 #. module: date_range
-#: model:ir.model.fields,field_description:date_range.field_date_range__type_name
-msgid "Type Name"
-msgstr "Nome tipo"
-
-#. module: date_range
 #: model:ir.model.fields,field_description:date_range.field_date_range_generator__unit_of_time
 #: model:ir.model.fields,field_description:date_range.field_date_range_type__unit_of_time
 msgid "Unit Of Time"
@@ -421,7 +394,6 @@ msgstr "Fino a"
 #. module: date_range
 #. odoo-python
 #: code:addons/date_range/models/date_range_type.py:0
-#, python-format
 msgid ""
 "You cannot change the company, as this Date Range Type is assigned to Date "
 "Range '%s'."
@@ -472,6 +444,15 @@ msgstr "settimane"
 #: model:ir.model.fields.selection,name:date_range.selection__date_range_type__unit_of_time__0
 msgid "years"
 msgstr "anni"
+
+#~ msgid "&amp;nbsp;"
+#~ msgstr "&amp;nbsp;"
+
+#~ msgid "Type Name"
+#~ msgstr "Nome tipo"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "If sets date range of same type must not overlap."
 #~ msgstr ""

@@ -1,0 +1,66 @@
+<!-- /home/siisi/property-management/prod/custom-addons/copro_manager/views/charge_views.xml -->
+
+<odoo>
+    <!-- list view for Tantième Charges -->
+    <record id="view_copro_charge_list" model="ir.ui.view">
+        <field name="name">copro.charge.list</field>
+        <field name="model">copro.charge</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Charges">
+              <field name="name"/>
+              <field name="amount"/>
+              <field name="date"/>
+              <field name="residence_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form view for Tantième Charges -->
+    <record id="view_copro_charge_form" model="ir.ui.view">
+        <field name="name">copro.charge.form</field>
+        <field name="model">copro.charge</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(copro_charge_report_action)d"
+                            type="action"
+                            string="Print"
+                            class="btn-primary"
+                            context="{'active_ids': [id]}"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="amount"/>
+                        <field name="date"/>
+                        <field name="residence_id"/>
+                    </group>
+                    <field name="distribution_line_ids" context="{'default_residence_id': residence_id}">
+                    <list editable="bottom">
+                            <field name="apartment_id" domain="[('residence_ids', 'in', parent.residence_id)]"/>
+                            <field name="amount"/>
+                        </list>
+                    </field>
+
+                    <div class="oe_button_box">
+                        <button 
+                            name="action_distribute_charges" 
+                            string="Distribute Charges" 
+                            type="object" 
+                            class="btn-primary"
+                        />
+                        <button 
+                            name="action_post_to_accounting"
+                            string="Post to Accounting" 
+                            type="object" 
+                            class="btn-success"
+                            groups="copro_manager.group_syndic"
+                        />
+                    </div> 
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
