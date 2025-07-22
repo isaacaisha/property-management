@@ -55,3 +55,46 @@ class ResUsers(models.Model):
             syn = u.presta_records.mapped('syndic_id') | sup.mapped('syndic_ids')
             u.my_presta_supers = sup
             u.my_presta_syndics = syn
+
+    def _get_allowed_partner_ids(self):
+        self.ensure_one()
+        partner_ids = [self.partner_id.id]
+
+        if self.has_group('copro_manager.group_supersyndic'):
+            # Get partners through user relationships
+            syndics = self.env['copro.syndic'].search([]).mapped('user_id.partner_id').ids
+            copros = self.env['copro.coproprietaire'].search([]).mapped('user_id.partner_id').ids
+            prestas = self.env['copro.prestataire'].search([]).mapped('user_id.partner_id').ids
+            partner_ids += syndics + copros + prestas
+
+        elif self.has_group('copro_manager.group_syndic'):
+            # Get partners through user relationships
+            supers = self.env['copro.supersyndic'].search([]).mapped('user_id.partner_id').ids
+            copros = self.env['copro.coproprietaire'].search([]).mapped('user_id.partner_id').ids
+            prestas = self.env['copro.prestataire'].search([]).mapped('user_id.partner_id').ids
+            partner_ids += supers + copros + prestas
+
+        elif self.has_group('copro_manager.group_coproprietaire'):
+            # Use existing computed fields
+            partner_ids += self.my_copro_supers.mapped('user_id.partner_id').ids
+            partner_ids += self.my_copro_syndics.mapped('user_id.partner_id').ids
+            prestas = self.env['copro.prestataire'].search([
+                '|',
+                ('supersyndic_id', 'in', self.my_copro_supers.ids),
+                ('syndic_id', 'in', self.my_copro_syndics.ids)
+            ]).mapped('user_id.partner_id').ids
+            partner_ids += prestas
+
+        elif self.has_group('copro_manager.group_prestataire'):
+            # Use existing computed fields
+            partner_ids += self.my_presta_supers.mapped('user_id.partner_id').ids
+            partner_ids += self.my_presta_syndics.mapped('user_id.partner_id').ids
+            copros = self.env['copro.coproprietaire'].search([
+                '|',
+                ('supersyndic_id', 'in', self.my_presta_supers.ids),
+                ('syndic_id', 'in', self.my_presta_syndics.ids)
+            ]).mapped('user_id.partner_id').ids
+            partner_ids += copros
+
+        return list(set(partner_ids))
+        

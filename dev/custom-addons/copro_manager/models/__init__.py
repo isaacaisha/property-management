@@ -1,6 +1,9 @@
 # /home/gestion/manage/crm/scratch/custom-addons/copro_manager/models/__init__.py
 
+
 from . import res_users
+from . import res_partner
+
 from . import supersyndic
 from . import syndic
 from . import license
